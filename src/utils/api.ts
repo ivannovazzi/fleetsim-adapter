@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 import { GraphQLClient } from "graphql-request";
 import { config } from "./config";
-import { ApiVehicleModel } from "../types";
+import { Vehicle, VehicleUpdate } from "../types";
 
 const client = new GraphQLClient(config.apiUrl, {
   headers: {
@@ -22,13 +22,7 @@ const SEND_LOCATION_MUTATION = gql`
   }
 `;
 
-interface Update {
-  latitude: number;
-  longitude: number;
-  id: string;
-}
-
-export async function sendLocation(updates: Update[]): Promise<void> {
+export async function sendLocation(updates: VehicleUpdate[]): Promise<void> {
   try {
     const variables = { input: { vehicle: updates } };
     await client.request(SEND_LOCATION_MUTATION, variables);
@@ -58,10 +52,10 @@ const GET_VEHICLES_QUERY = gql`
   }
 `;
 
-export async function getVehicles(): Promise<ApiVehicleModel[]> {
+export async function getVehicles(): Promise<Vehicle[]> {
   try {
     const response = await client.request<{
-      vehicles: { nodes: ApiVehicleModel[] };
+      vehicles: { nodes: Vehicle[] };
     }>(GET_VEHICLES_QUERY);
     return response.vehicles.nodes;
   } catch (error) {

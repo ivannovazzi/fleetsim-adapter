@@ -15,7 +15,7 @@ export enum VehicleTrackingTypes {
   UNTRACKED = 'UNTRACKED'
 }
 
-export interface ApiVehicleModel {
+export interface Vehicle {
   id: string;
   callsign: string;
   isOnline: boolean;
@@ -37,4 +37,10 @@ export interface ExportVehicle {
   name: string;
   status: VehicleStatus;
   position: [number, number];
+}
+
+export interface VehicleUpdate {
+  latitude: number;
+  longitude: number;
+  id: string;
 }
