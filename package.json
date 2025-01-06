@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/ws": "^8.5.13",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql-request": "^7.1.2",
+    "tsx": "^4.19.2"
+  },
+  "name": "fleetsim-adapter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "NODE_ENV=production node ./dist/index.js --esm",
+    "build": "tsc",
+    "docker:build": "docker build -t fleetsim-adapter .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env fleetsim-adapter"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
