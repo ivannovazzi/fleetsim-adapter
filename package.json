@@ -11,14 +11,15 @@
     "tsx": "^4.19.2"
   },
   "name": "fleetsim-adapter",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "NODE_ENV=production node ./dist/index.js --esm",
     "build": "tsc",
     "docker:build": "docker build -t fleetsim-adapter .",
-    "docker:run": "docker run -p 3000:3000 --env-file .env fleetsim-adapter"
+    "docker:run": "docker run -p 3000:3000 --env-file .env fleetsim-adapter",
+    "get:version": "node -p \"require('./package.json').version\""
   },
   "author": "",
   "license": "ISC",
