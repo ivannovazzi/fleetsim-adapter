@@ -26,8 +26,10 @@ export async function sendLocation(updates: VehicleUpdate[]): Promise<void> {
   try {
     const variables = { input: { vehicle: updates } };
     await client.request(SEND_LOCATION_MUTATION, variables);
+    console.log((new Date()).toLocaleString(), "Location sent");
   } catch (error) {
-    console.error("Error sending location:", error);
+    let message = error instanceof Error ? error.message : "Unknown error";
+    console.error((new Date()).toLocaleString(), "Error sending location:", message);
   }
 }
 
@@ -59,7 +61,8 @@ export async function getVehicles(): Promise<Vehicle[]> {
     }>(GET_VEHICLES_QUERY);
     return response.vehicles.nodes;
   } catch (error) {
-    console.error("Error getting vehicles:", error);
-    return [];
+    let message = error instanceof Error ? error.message : "Unknown error";
+    console.error((new Date()).toLocaleString(), "Error getting vehicles:", message);
+    return []
   }
 }
